@@ -5,6 +5,8 @@
   const dots = Array.from(document.querySelectorAll('.slide-dot'));
   const previousButton = document.querySelector('.nav-button.previous');
   const nextButton = document.querySelector('.nav-button.next');
+  const fullscreenButton = document.getElementById('fullscreen-toggle');
+  const appShell = document.querySelector('.app-shell');
   const currentSlideLabel = document.getElementById('current-slide');
   const progressBar = document.querySelector('.progress-track');
   const progressFill = document.querySelector('.progress-fill');
@@ -14,6 +16,27 @@
   const simulateButton = document.getElementById('simulate-access');
 
   const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+  function updateFullscreenButton() {
+    if (!fullscreenButton) return;
+    const isFullscreen = document.fullscreenElement === appShell;
+    fullscreenButton.setAttribute('aria-pressed', String(isFullscreen));
+    fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Salir de pantalla completa' : 'Activar pantalla completa');
+    const label = fullscreenButton.querySelector('b');
+    if (label) label.textContent = isFullscreen ? 'Salir' : 'Pantalla completa';
+  }
+
+  async function toggleFullscreen() {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else if (appShell?.requestFullscreen) {
+        await appShell.requestFullscreen();
+      }
+    } catch (error) {
+      console.warn('No se pudo cambiar a pantalla completa:', error);
+    }
+  }
 
   async function simulateAccess() {
     if (!signalDisplay || !simulateButton || simulateButton.disabled) return;
@@ -76,6 +99,8 @@
   }
 
   simulateButton?.addEventListener('click', simulateAccess);
+  fullscreenButton?.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', updateFullscreenButton);
 
   previousButton.addEventListener('click', () => showSlide(currentIndex - 1));
   nextButton.addEventListener('click', () => showSlide(currentIndex + 1));

@@ -11,6 +11,7 @@
   const progressBar = document.querySelector('.progress-track');
   const progressFill = document.querySelector('.progress-fill');
   let currentIndex = 0;
+  let fallbackFullscreen = false;
   const signalDisplay = document.getElementById('signal-display');
   const signalStatus = document.getElementById('signal-status');
   const simulateButton = document.getElementById('simulate-access');
@@ -19,22 +20,44 @@
 
   function updateFullscreenButton() {
     if (!fullscreenButton) return;
-    const isFullscreen = document.fullscreenElement === appShell;
+    const isFullscreen = document.fullscreenElement === appShell || fallbackFullscreen;
     fullscreenButton.setAttribute('aria-pressed', String(isFullscreen));
     fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Salir de pantalla completa' : 'Activar pantalla completa');
     const label = fullscreenButton.querySelector('b');
     if (label) label.textContent = isFullscreen ? 'Salir' : 'Pantalla completa';
   }
 
+  function enterFallbackFullscreen() {
+    fallbackFullscreen = true;
+    appShell?.classList.add('fullscreen-fallback');
+    document.body.classList.add('fullscreen-fallback-active');
+    updateFullscreenButton();
+  }
+
+  function leaveFallbackFullscreen() {
+    fallbackFullscreen = false;
+    appShell?.classList.remove('fullscreen-fallback');
+    document.body.classList.remove('fullscreen-fallback-active');
+    updateFullscreenButton();
+  }
+
   async function toggleFullscreen() {
+    if (fallbackFullscreen) {
+      leaveFallbackFullscreen();
+      return;
+    }
     try {
       if (document.fullscreenElement) {
         await document.exitFullscreen();
       } else if (appShell?.requestFullscreen) {
         await appShell.requestFullscreen();
+      } else {
+        enterFallbackFullscreen();
       }
     } catch (error) {
-      console.warn('No se pudo cambiar a pantalla completa:', error);
+      // Algunos previews embebidos bloquean Fullscreen API; se usa modo expandido local como respaldo.
+      enterFallbackFullscreen();
+      console.info('Se activó el modo de pantalla completa compatible con el preview.', error);
     }
   }
 
@@ -114,6 +137,10 @@
       target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT', 'VIDEO', 'AUDIO'].includes(target.tagName)
     );
     if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'Escape' && fallbackFullscreen) {
+      leaveFallbackFullscreen();
+      return;
+    }
 
     if (event.key === 'ArrowRight' || event.key === 'PageDown') {
       event.preventDefault();

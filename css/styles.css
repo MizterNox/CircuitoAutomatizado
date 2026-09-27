@@ -47,3 +47,7 @@ body.fullscreen-fallback-active{overflow:hidden}.app-shell.fullscreen-fallback{p
 .app-shell:fullscreen::-webkit-scrollbar,.app-shell.fullscreen-fallback::-webkit-scrollbar,html:fullscreen::-webkit-scrollbar,body:fullscreen::-webkit-scrollbar,body.fullscreen-fallback-active::-webkit-scrollbar{display:none;width:0;height:0}
 .app-shell:fullscreen .cover-copy h1,.app-shell.fullscreen-fallback .cover-copy h1{font-size:clamp(46px,4.4vw,64px);line-height:1.02;margin-top:18px;margin-bottom:14px}
 .app-shell:fullscreen .slide,.app-shell.fullscreen-fallback .slide{padding-top:clamp(16px,3vh,34px);padding-bottom:16px}
+
+/* Ocultar la barra de desplazamiento exterior tanto en vista normal como en fullscreen */
+html,body,.app-shell{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.app-shell::-webkit-scrollbar{display:none;width:0;height:0}

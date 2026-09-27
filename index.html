@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111e">
+  <meta name="description" content="Presentación interactiva del sistema de control de acceso vehicular con semáforo automatizado.">
+  <title>Control de Acceso Vehicular | Grupo 5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#slide-1" aria-label="SENATI, inicio de la presentación">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-name">SENATI<small>FORMACIÓN TECNOLÓGICA</small></span>
+      </a>
+      <div class="topbar-center"><span class="live-dot"></span> PRESENTACIÓN INTERACTIVA <span class="topbar-divider">/</span> IOT LAB</div>
+      <div class="topbar-right"><span class="group-label">GRUPO <b>05</b></span><span class="topbar-line"></span><span class="course-short">DISEÑO Y DESARROLLO DE SOLUCIONES IoT</span></div>
+    </header>
+
+    <main class="presentation" aria-label="Presentación del proyecto">
+      <section class="slide is-active" id="slide-1" aria-labelledby="title-1" aria-hidden="false">
+        <div class="cover-layout">
+          <div class="cover-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> PROYECTO INTEGRADOR <span class="eyebrow-index">01 — 06</span></div>
+            <h1 id="title-1">Sistema de Control<br>de Acceso Vehicular<br><span>con Semáforo</span><br><span class="title-accent">Automatizado.</span></h1>
+            <p class="cover-description">Una solución IoT didáctica que organiza el ingreso vehicular mediante una señalización inteligente, simple y segura.</p>
+            <div class="cover-tags"><span><i class="tag-dot green"></i> ARDUINO UNO R3</span><span><i class="tag-dot cyan"></i> CONTROL LÓGICO</span></div>
+          </div>
+          <div class="hero-visual" aria-label="Ilustración de un semáforo de acceso vehicular">
+            <div class="visual-grid"></div>
+            <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+            <div class="signal-card" id="signal-display" data-state="red">
+              <div class="signal-top"><span>GATE SIGNAL</span><span class="signal-status"><i></i> SYSTEM READY</span></div>
+              <div class="signal-head"><span class="lamp lamp-red is-lit" aria-label="Luz roja"></span><span class="lamp lamp-green" aria-label="Luz verde"></span></div>
+              <div class="signal-neck"></div><div class="signal-base"></div>
+              <div class="signal-caption"><span>ACCESO PRINCIPAL</span><b id="signal-status" aria-live="polite">DETENERSE <i>●</i></b></div>
+            </div>
+            <div class="visual-label label-top"><span class="label-icon">↗</span> DETECCIÓN<br><b>BOTÓN / SENSOR</b></div>
+            <div class="visual-label label-bottom"><span class="label-pulse"></span> SOLO DOS ESTADOS<br><b>ROJO ↔ VERDE</b></div>
+            <button class="simulate-button" id="simulate-access" type="button"><span class="simulate-icon">▶</span><span>SIMULAR INGRESO</span></button>
+            <div class="visual-coordinate">ARDUINO UNO R3 · IOT</div>
+          </div>
+          <div class="cover-footer">
+            <div class="cover-course"><span class="meta-label">CURSO</span><strong>Seminario de Complementación Práctica II</strong><span>Diseño y Desarrollo de Soluciones IoT</span></div>
+            <div class="cover-career"><span class="meta-label">CARRERA</span><strong>Ingeniería de Software <span>con IA</span></strong></div>
+            <div class="cover-team"><span class="meta-label">INTEGRANTES · GRUPO 5</span><strong>Valerio Lopez Jared Peter <i>·</i> Rojas Coronado Luz Daniela <i>·</i> Carlos Rojas Leticia Ivett</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-2" aria-labelledby="title-2" aria-hidden="true">
+        <div class="slide-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> CONTEXTO Y PROPUESTA <span class="eyebrow-index">02 — 06</span></div><h2 id="title-2">Un acceso más <span>ordenado.</span></h2></div><p class="heading-note">Del control manual a una secuencia automatizada y predecible.</p></div>
+        <div class="problem-layout">
+          <article class="problem-card glass-card"><div class="card-kicker"><span class="kicker-number">01</span> EL DESAFÍO</div><div class="problem-icon" aria-hidden="true">⌁</div><h3>¿Cómo gestionar<br>el ingreso al<br>estacionamiento?</h3><p>Sin una señal clara, los vehículos pueden avanzar en momentos inadecuados y generar confusión en el acceso.</p><div class="card-bottom-line"><span>CONTROL DE INGRESO</span><span>01 / 02</span></div></article>
+          <div class="logic-column"><div class="logic-intro"><span class="meta-label">REGLAS DE NEGOCIO</span><h3>Una secuencia clara.<br><span>Una respuesta automática.</span></h3></div>
+            <div class="flow-step"><div class="flow-marker red-marker">01</div><div class="flow-content"><span class="flow-state">ESTADO DE REPOSO</span><strong>Rojo encendido</strong><p>El acceso permanece detenido hasta recibir una solicitud.</p></div><span class="flow-arrow">↓</span></div>
+            <div class="flow-step"><div class="flow-marker blue-marker">02</div><div class="flow-content"><span class="flow-state">EVENTO DE ENTRADA</span><strong>Se pulsa el botón</strong><p>El pulsador representa la detección de un vehículo.</p></div><span class="flow-arrow">↓</span></div>
+            <div class="flow-step"><div class="flow-marker green-marker">03</div><div class="flow-content"><span class="flow-state">SECUENCIA DE PASO</span><strong>Verde × 3 + paso libre</strong><p>El verde parpadea tres veces, queda fijo 3 segundos y vuelve a rojo.</p></div><span class="flow-check">✓</span></div>
+          </div>
+        </div>
+        <div class="note-strip"><span class="note-symbol">i</span><p>El prototipo demuestra la lógica de señalización; en una instalación real, la detección se integraría con un sensor vehicular adecuado.</p><span class="note-code">INPUT → SECUENCIA → OUTPUT</span></div>
+      </section>
+
+      <section class="slide" id="slide-3" aria-labelledby="title-3" aria-hidden="true">
+        <div class="slide-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> HARDWARE <span class="eyebrow-index">03 — 06</span></div><h2 id="title-3">Cada componente <span>cuenta.</span></h2></div><p class="heading-note">Del inventario físico al circuito listo para ensamblar.</p></div>
+        <div class="components-layout">
+          <div class="components-panel glass-card"><div class="panel-title"><div><span class="meta-label">KIT DEL PROTOTIPO</span><h3>Componentes y materiales</h3></div><span class="count-pill">07 ELEMENTOS</span></div>
+            <ul class="component-list">
+              <li><span class="component-icon">▦</span><span class="component-name"><b>Arduino Uno R3</b><small>Unidad de control</small></span><span class="component-qty">× 1</span></li>
+              <li><span class="component-icon">▤</span><span class="component-name"><b>Protoboard</b><small>Base para conexiones</small></span><span class="component-qty">× 1</span></li>
+              <li><span class="component-icon red-text">●</span><span class="component-name"><b>LED rojo</b><small>Señal de detener</small></span><span class="component-qty">× 1</span></li>
+              <li><span class="component-icon green-text">●</span><span class="component-name"><b>LED verde</b><small>Señal de avanzar</small></span><span class="component-qty">× 1</span></li>
+              <li><span class="component-icon">⌁</span><span class="component-name"><b>Resistencia 220 Ω</b><small>Protección de cada LED</small></span><span class="component-qty">× 2</span></li>
+              <li><span class="component-icon">◉</span><span class="component-name"><b>Pulsador</b><small>Entrada / solicitud de paso</small></span><span class="component-qty">× 1</span></li>
+              <li><span class="component-icon">⌁</span><span class="component-name"><b>Resistencia 10 kΩ</b><small>Configuración pull-down</small></span><span class="component-qty">× 1</span></li>
+            </ul>
+            <div class="component-foot"><span class="status-dot"></span> MONTAJE DE BAJA TENSIÓN <span class="component-foot-right">5 V DC</span></div>
+          </div>
+          <div class="video-column"><div class="video-heading"><span class="meta-label">DEMOSTRACIÓN EN VIDEO</span><span class="video-duration">02 CLIPS</span></div>
+            <figure class="video-card"><video controls preload="metadata" playsinline aria-label="Video de los componentes del circuito"><source src="videos/1componentes.mp4" type="video/mp4">Tu navegador no soporta la reproducción de video HTML5.</video><figcaption><span class="video-index">01</span><span><b>Reconocimiento de componentes</b><small>Inventario del circuito</small></span><span class="play-mark">▶</span></figcaption></figure>
+            <figure class="video-card"><video controls preload="metadata" playsinline aria-label="Video de asignación de valores a las resistencias"><source src="videos/2ValorResistencia.mp4" type="video/mp4">Tu navegador no soporta la reproducción de video HTML5.</video><figcaption><span class="video-index">02</span><span><b>Valor de las resistencias</b><small>220 Ω para LED · 10 kΩ pull-down</small></span><span class="play-mark">▶</span></figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-4" aria-labelledby="title-4" aria-hidden="true">
+        <div class="slide-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> ENSAMBLAJE Y LÓGICA <span class="eyebrow-index">04 — 06</span></div><h2 id="title-4">Conexiones con <span>propósito.</span></h2></div><p class="heading-note">Entradas, salidas y una secuencia programada en Arduino.</p></div>
+        <div class="connection-layout">
+          <div class="connection-left"><div class="wiring-card glass-card"><div class="panel-title"><div><span class="meta-label">MAPA DE CONEXIONES</span><h3>Del pin al componente</h3></div><span class="count-pill">5 V · GND</span></div>
+            <div class="wire-row"><span class="wire-pin power-pin">5V</span><span class="wire-track power-track"></span><span class="wire-target"><b>Riel positivo</b><small>Alimentación del protoboard</small></span></div>
+            <div class="wire-row"><span class="wire-pin ground-pin">GND</span><span class="wire-track ground-track"></span><span class="wire-target"><b>Riel negativo</b><small>Tierra común del circuito</small></span></div>
+            <div class="wire-row"><span class="wire-pin red-pin">D8</span><span class="wire-track red-track"></span><span class="wire-target"><b>LED rojo + 220 Ω</b><small>Ánodo al pin; cátodo a GND</small></span></div>
+            <div class="wire-row"><span class="wire-pin green-pin">D9</span><span class="wire-track green-track"></span><span class="wire-target"><b>LED verde + 220 Ω</b><small>Ánodo al pin; cátodo a GND</small></span></div>
+            <div class="wire-row"><span class="wire-pin input-pin">D2</span><span class="wire-track input-track"></span><span class="wire-target"><b>Pulsador + 10 kΩ</b><small>Entrada con resistencia pull-down a GND</small></span></div>
+            <div class="wiring-note"><span>!</span> Comparte GND entre Arduino y protoboard. Coloca las resistencias en serie con los LED.</div>
+          </div>
+            <figure class="video-card connection-video"><video controls preload="metadata" playsinline aria-label="Video de armado de conexiones entre componentes y Arduino Uno R3"><source src="videos/3ConexionCircuito.mp4" type="video/mp4">Tu navegador no soporta la reproducción de video HTML5.</video><figcaption><span class="video-index">03</span><span><b>Armado del circuito</b><small>Conexiones con Arduino Uno R3</small></span><span class="play-mark">▶</span></figcaption></figure>
+          </div>
+          <div class="code-card"><div class="code-top"><div><span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span><span class="code-file">semaforo_acceso.ino</span></div><span class="code-language">C++ / ARDUINO</span></div><pre><code><span class="code-comment">// Pines de entrada y señalización</span>
+<span class="code-type">const int</span> ledRojo = <span class="code-number">8</span>;
+<span class="code-type">const int</span> ledVerde = <span class="code-number">9</span>;
+<span class="code-type">const int</span> boton = <span class="code-number">2</span>;
+
+<span class="code-key">void</span> <span class="code-function">setup</span>() {
+  pinMode(ledRojo, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+  pinMode(boton, INPUT); <span class="code-comment">// Pull-down externo</span>
+  digitalWrite(ledRojo, HIGH);
+  digitalWrite(ledVerde, LOW);
+}
+
+<span class="code-key">void</span> <span class="code-function">loop</span>() {
+  <span class="code-key">if</span> (digitalRead(boton) == HIGH) {
+    digitalWrite(ledRojo, LOW);
+    <span class="code-key">for</span> (<span class="code-type">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">3</span>; i++) {
+      digitalWrite(ledVerde, HIGH); delay(<span class="code-number">500</span>);
+      digitalWrite(ledVerde, LOW);  delay(<span class="code-number">500</span>);
+    }
+    digitalWrite(ledVerde, HIGH); delay(<span class="code-number">3000</span>);
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledRojo, HIGH);
+    <span class="code-key">while</span> (digitalRead(boton) == HIGH) delay(<span class="code-number">10</span>);
+  }
+}</code></pre><div class="code-bottom"><span><i></i> LÓGICA DE CONTROL ACTIVA</span><span>01:00 — SECUENCIA</span></div></div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5" aria-labelledby="title-5" aria-hidden="true">
+        <div class="slide-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PRUEBA Y VALIDACIÓN <span class="eyebrow-index">05 — 06</span></div><h2 id="title-5">De la simulación <span>a la acción.</span></h2></div><p class="heading-note">El código transforma una pulsación en una secuencia visual de acceso.</p></div>
+        <div class="simulation-layout">
+          <div class="simulation-main"><figure class="video-card feature-video"><video controls preload="metadata" playsinline aria-label="Video de edición del código C++ y simulación interactiva del circuito"><source src="videos/4FuncionamientoCircuito.mp4" type="video/mp4">Tu navegador no soporta la reproducción de video HTML5.</video><figcaption><span class="video-index">04</span><span><b>Simulación y funcionamiento</b><small>Edición del código C++ en entorno interactivo</small></span><span class="play-mark">▶</span></figcaption></figure>
+            <div class="simulation-caption"><span class="status-dot"></span> CICLO DE ACCESO <span class="caption-divider">/</span> ENTRADA DIGITAL → RESPUESTA LED</div></div>
+          <div class="simulation-aside"><div class="sequence-card glass-card"><span class="meta-label">SECUENCIA DEL PROGRAMA</span><h3>La lógica, paso a paso.</h3>
+            <div class="sequence-item"><span class="sequence-num">01</span><div><b><code>if</code> · Detectar</b><p>Comprueba si el botón fue presionado.</p></div><span class="mini-led red-mini"></span></div>
+            <div class="sequence-item"><span class="sequence-num">02</span><div><b><code>for</code> · Señalizar</b><p>Repite el parpadeo verde tres veces.</p></div><span class="mini-led green-mini"></span></div>
+            <div class="sequence-item"><span class="sequence-num">03</span><div><b><code>delay</code> · Permitir paso</b><p>Mantiene el verde encendido 3 segundos.</p></div><span class="time-chip">3 s</span></div>
+            <div class="sequence-item"><span class="sequence-num">04</span><div><b>Restablecer</b><p>Apaga verde y reactiva la luz roja.</p></div><span class="mini-led red-mini"></span></div>
+          </div>
+            <div class="sim-stat"><div class="stat-glyph">↻</div><div><span class="meta-label">CICLO AUTOMÁTICO</span><b>Listo para la siguiente solicitud</b></div><span class="stat-state">READY</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-6" aria-labelledby="title-6" aria-hidden="true">
+        <div class="conclusion-layout"><div class="conclusion-main"><div class="eyebrow"><span class="eyebrow-line"></span> CIERRE DEL PROYECTO <span class="eyebrow-index">06 — 06</span></div><h2 id="title-6">Aprender.<br>Construir.<br><span>Automatizar.</span></h2><p class="conclusion-lead">Una idea sencilla se convierte en una experiencia práctica de diseño, programación y validación de soluciones IoT.</p><div class="conclusion-signature"><span class="signature-line"></span><span>GRUPO 5 <i>·</i> SENATI</span></div></div>
+          <div class="takeaways"><article class="takeaway-card"><span class="takeaway-index">01</span><div class="takeaway-icon">◇</div><h3>Prototipado<br>en Tinkercad</h3><p>Representar y probar el circuito antes de llevarlo al montaje físico.</p><span class="takeaway-foot">DISEÑO → SIMULACIÓN</span></article><article class="takeaway-card"><span class="takeaway-index">02</span><div class="takeaway-icon accent-yellow">{ }</div><h3>Lógica de<br>programación</h3><p>Aplicar condicionales y bucles para controlar una secuencia de eventos.</p><span class="takeaway-foot">IF · FOR · DELAY</span></article><article class="takeaway-card"><span class="takeaway-index">03</span><div class="takeaway-icon accent-green">⌁</div><h3>Fundamentos<br>de IoT</h3><p>Conectar entradas, procesamiento y salidas en una solución automatizada.</p><span class="takeaway-foot">SENSOR → CONTROL → ACCIÓN</span></article></div>
+        </div>
+        <div class="closing-bar"><span><i class="closing-dot"></i> FIN DE LA PRESENTACIÓN</span><span>SEMINARIO DE COMPLEMENTACIÓN PRÁCTICA II</span><span>GRACIAS <b>✳</b></span></div>
+      </section>
+    </main>
+
+    <footer class="controls" aria-label="Controles de navegación">
+      <div class="progress-area"><span class="progress-label">PROGRESO</span><div class="progress-track" role="progressbar" aria-label="Progreso de la presentación" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span class="progress-fill"></span></div><div class="slide-counter"><b id="current-slide">01</b><span>/</span><span>06</span></div></div>
+      <div class="slide-dots" role="group" aria-label="Ir a una diapositiva"><button class="slide-dot active" data-slide="0" aria-label="Ir a la diapositiva 1" aria-current="step"></button><button class="slide-dot" data-slide="1" aria-label="Ir a la diapositiva 2"></button><button class="slide-dot" data-slide="2" aria-label="Ir a la diapositiva 3"></button><button class="slide-dot" data-slide="3" aria-label="Ir a la diapositiva 4"></button><button class="slide-dot" data-slide="4" aria-label="Ir a la diapositiva 5"></button><button class="slide-dot" data-slide="5" aria-label="Ir a la diapositiva 6"></button></div>
+      <div class="nav-buttons"><button class="nav-button previous" type="button" aria-label="Diapositiva anterior" disabled><span>←</span><b>Anterior</b></button><button class="nav-button next" type="button" aria-label="Siguiente diapositiva"><b>Siguiente</b><span>→</span></button><button class="nav-button fullscreen-button" id="fullscreen-toggle" type="button" aria-label="Activar pantalla completa" aria-pressed="false"><span aria-hidden="true">⛶</span><b>Pantalla completa</b></button></div>
+    </footer>
+  </div>
+</body>
+</html>
